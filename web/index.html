@@ -52,8 +52,8 @@
            </div>
 
            <div id="acciones" class="d-flex justify-content-between mt-53">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregar">Agregar hora</button>
-                <button type="button" class="btn btn-secondary">Limpiar</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregar">Agregar</button>
+                <button type="button" class="btn btn-secondary">Reiniciar</button>
            </div>
            <!-- Modal agregar tiempo -->
             <div class="modal fade" id="agregar" tabindex="-1" role="dialog" aria-labelledby="agregar" aria-hidden="true">
@@ -101,13 +101,24 @@
                             <th scope="row">1</th>
                             <td>12:55 a.m</td>
                             <td>2:15 p.m</td>
-                            <td><button type="button" class="btn btn-warning">Editar</button></td>
+                            <td>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <button type="button" class="btn btn-warning mr-1">Editar</button>
+                                    <button type="button" class="btn btn-danger">Eliminar</button>
+                                </div>
+                            </td>
+                            
                         </tr>
                         <tr>
                             <th scope="row">2</th>
                             <td>3:50 p.m</td>
                             <td>5:15 p.m</td>
-                            <td><button type="button" class="btn btn-warning">Editar</button></td>
+                            <td>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <button type="button" class="btn btn-warning mr-1">Editar</button>
+                                    <button type="button" class="btn btn-danger">Eliminar</button>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
