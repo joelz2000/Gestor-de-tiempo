@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+/* Inicio */
+Route::get('/', 'TiempoController@index');

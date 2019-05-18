@@ -1,0 +1,8 @@
+.nav-link{
+    padding-top: 15px;
+    padding-bottom: 0;
+}
+
+#registroHoras table tr td{
+    min-width: 80px;
+}
