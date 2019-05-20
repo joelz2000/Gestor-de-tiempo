@@ -56,7 +56,7 @@
             Cuerpo la parte blanca
         -->
         <div class="container mt-5 pt-5">
-           @yield('content');
+           @yield('content')
         </div>
     </body>
 </html>
