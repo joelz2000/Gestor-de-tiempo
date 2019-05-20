@@ -2,6 +2,7 @@
 
 namespace GestorTiempo\Http\Controllers;
 
+use GestorTiempo\Tiempo;
 use Illuminate\Http\Request;
 
 class TiempoController extends Controller
@@ -13,7 +14,7 @@ class TiempoController extends Controller
      */
     public function index()
     {
-        return view('tiempo');
+        return view('tiempo.index');
     }
 
     /**
@@ -23,7 +24,7 @@ class TiempoController extends Controller
      */
     public function create()
     {
-        //
+        return view('tiempo.index');
     }
 
     /**
@@ -35,6 +36,12 @@ class TiempoController extends Controller
     public function store(Request $request)
     {
         //
+        $tiempo = new Tiempo();
+        $tiempo->tiempoInicio = $request->input('tiempoInicio');
+        $tiempo->tiempoFinal = $request->input('tiempoFinal');
+        $tiempo->save();
+
+        return 'Saved';
     }
 
     /**
