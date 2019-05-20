@@ -70,7 +70,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="/tiempo">
+                <form method="POST" action="/tiempo@store">
+                    @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="tiempoInicio">Inicio</label>

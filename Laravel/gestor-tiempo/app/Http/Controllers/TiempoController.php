@@ -41,7 +41,7 @@ class TiempoController extends Controller
         $tiempo->tiempoFinal = $request->input('tiempoFinal');
         $tiempo->save();
 
-        return 'Saved';
+        return  redirect('tiempo.index');
     }
 
     /**
