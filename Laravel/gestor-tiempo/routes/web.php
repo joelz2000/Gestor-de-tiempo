@@ -14,3 +14,5 @@
 
 /* Inicio */
 Route::get('/', 'TiempoController@index');
+
+Route::post('/', 'TiempoController@store');

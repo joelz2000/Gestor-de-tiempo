@@ -37,11 +37,14 @@ class TiempoController extends Controller
     {
         //
         $tiempo = new Tiempo();
-        $tiempo->tiempoInicio = $request->input('tiempoInicio');
-        $tiempo->tiempoFinal = $request->input('tiempoFinal');
+        $tiempo->comienzo = $request->input('tiempoInicio');
+        $tiempo->final = $request->input('tiempoFinal');
+        $tiempo->fecha = '22/01/25';
+        $tiempo->estado = 1;
+        $tiempo->updated_at = '22/02/25';
         $tiempo->save();
 
-        return  redirect('tiempo.index');
+        return  'saved';
     }
 
     /**

@@ -70,7 +70,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="/tiempo@store">
+                <form method="POST" action="/">
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -82,12 +82,13 @@
                             <input type="time" class="form-control" id="tiempoFinal" name="tiempoFinal" placeholder="Tiempo Final">
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Agregar</button>
-            </div>
+            
         </div>
     </div>
 </div>
