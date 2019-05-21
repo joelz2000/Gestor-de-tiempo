@@ -16,7 +16,7 @@ class CreateTiemposTable extends Migration
         Schema::create('tiempos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->time("comienzo");
-            $table->time("final");
+            $table->time("final")->nullable();
             $table->integer("estado");
             $table->timestamps();
         });

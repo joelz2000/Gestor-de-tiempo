@@ -39,7 +39,13 @@ class TiempoController extends Controller
         //
         $tiempo = new Tiempo();
         $tiempo->comienzo = $request->input('tiempoInicio');
-        $tiempo->final = $request->input('tiempoFinal');
+
+        if($request->input('tiempoFinal') == null){
+            $tiempo->final =null;
+        }else{
+            $tiempo->final = $request->input('tiempoFinal');
+        }
+      
         $tiempo->estado = 1;
         $tiempo->save();
 
