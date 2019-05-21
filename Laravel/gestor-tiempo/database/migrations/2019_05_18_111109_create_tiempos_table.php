@@ -17,8 +17,8 @@ class CreateTiemposTable extends Migration
             $table->bigIncrements('id');
             $table->time("comienzo");
             $table->time("final");
-            $table->date("fecha");
             $table->integer("estado");
+            $table->timestamps();
         });
     }
 

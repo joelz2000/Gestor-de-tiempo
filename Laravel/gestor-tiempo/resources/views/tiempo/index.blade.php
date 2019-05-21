@@ -29,33 +29,29 @@
                 <th scope="col">#</th>
                 <th scope="col">Comienzo</th>
                 <th scope="col">Final</th>
+                <th scope="col">Fecha</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
+
+            @foreach($tiempos as $tiempo)
+                
             <tr>
-                <th scope="row">1</th>
-                <td scope="col">12:55 a.m</td>
-                <td scope="col">2:15 p.m</td>
+                <th scope="row">{{$tiempo->id}}</th>
+                <td scope="col">{{$tiempo->comienzo}}</td>
+                <td scope="col">{{$tiempo->final}}</td>
+                <td scope="col">{{$tiempo->created_at}}</td>
                 <td>
                     <div class="btn-group" data-toggle="buttons">
-                        <button type="button" class="btn btn-warning mr-1 pl-3 pr-3" data-toggle="modal" data-target="#editar-1"><ion-icon name="create"></ion-icon></button>
+                        <button type="button" class="btn btn-warning mr-1 pl-3 pr-3" data-toggle="modal" data-target="#editar-{{$tiempo->id}}"><ion-icon name="create"></ion-icon></button>
                         <button type="button" class="btn btn-danger pl-3 pr-3"><ion-icon name="trash"></ion-icon></button>
                     </div>
                 </td>
                 
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>3:50 p.m</td>
-                <td>5:15 p.m</td>
-                <td>
-                    <div class="btn-group" data-toggle="buttons">
-                        <button type="button" class="btn btn-warning mr-1 pl-3 pr-3" data-toggle="modal" data-target="#editar-2"><ion-icon name="create"></ion-icon></button>
-                        <button type="button" class="btn btn-danger pl-3 pr-3"><ion-icon name="trash"></ion-icon></button>
-                    </div>
-                </td>
-            </tr>
+            @endforeach
+            
         </tbody>
     </table>
 </div>

@@ -14,7 +14,8 @@ class TiempoController extends Controller
      */
     public function index()
     {
-        return view('tiempo.index');
+        $tiempos = Tiempo::all();
+        return view('tiempo.index', compact('tiempos'));
     }
 
     /**
@@ -39,12 +40,10 @@ class TiempoController extends Controller
         $tiempo = new Tiempo();
         $tiempo->comienzo = $request->input('tiempoInicio');
         $tiempo->final = $request->input('tiempoFinal');
-        $tiempo->fecha = '22/01/25';
         $tiempo->estado = 1;
-        $tiempo->updated_at = '22/02/25';
         $tiempo->save();
 
-        return  'saved';
+        return redirect('/');
     }
 
     /**
