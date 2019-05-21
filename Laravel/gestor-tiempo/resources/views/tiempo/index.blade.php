@@ -106,19 +106,19 @@
                         <form>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputEmail4">Inicio</label>
-                                    <input type="time" class="form-control" id="inputEmail4" placeholder="Tiempo inicial">
+                                    <label for="tiempoInicio">Inicio</label>
+                                    <input type="time" class="form-control" id="inputEmail4" name="tiempoInicio" value="{{$tiempo->comienzo}}">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Final</label>
-                                    <input type="time" class="form-control" id="inputPassword4" placeholder="Tiempo Final">
+                                    <label for="tiempoFinal">Final</label>
+                                    <input type="time" class="form-control" id="tiempoFinal" name="tiempoFinal" value="{{$tiempo->final}}"> 
                                 </div>
                             </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Editar</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Editar</button>
                     </div>
                 </div>
             </div>
