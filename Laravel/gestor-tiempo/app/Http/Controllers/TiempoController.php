@@ -37,16 +37,17 @@ class TiempoController extends Controller
     public function store(Request $request)
     {
         //
-        $tiempo = new Tiempo();
-        $tiempo->comienzo = $request->input('tiempoInicio');
 
-        if($request->input('tiempoFinal') == null){
-            $tiempo->final =null;
-        }else{
-            $tiempo->final = $request->input('tiempoFinal');
-        }
-      
+        $validateData = $request->validate([
+            'tiempoInicio'=> 'required'
+        ]);
+
+        $tiempo = new Tiempo();
+
+        $tiempo->comienzo = $request->input('tiempoInicio');
+        $tiempo->final = $request->input('tiempoFinal');
         $tiempo->estado = 1;
+        
         $tiempo->save();
 
         return redirect('/');

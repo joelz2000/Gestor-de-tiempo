@@ -4,12 +4,34 @@
 
 @section('content')
 
+   
     <!--
         Tiempo
     -->
     <div id="tiempo" class="text-center">
         <h1>14:15:21 - 15:00:00 <hr></h1>
     </div>
+
+  
+
+     <!--
+        Validaciones
+    -->
+
+    @if($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+
+    @else
+    <div class="alert alert-success" role="alert">
+        Se agrego Correctamente!
+    </div>
+    @endif
 
     <!--
         Acciones agregar y reiniciar
