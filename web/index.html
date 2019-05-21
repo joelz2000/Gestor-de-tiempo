@@ -128,20 +128,21 @@
                             <form>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Inicio</label>
-                                        <input type="time" class="form-control" id="inputEmail4" placeholder="Tiempo inicial">
+                                        <label for="tiempoInicial">Inicio</label>
+                                        <input type="time" class="form-control" id="tiempoInicial" placeholder="Tiempo inicial" name="tiempoInicial"> 
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Final</label>
-                                        <input type="time" class="form-control" id="inputPassword4" placeholder="Tiempo Final">
+                                        <label for="tiempoFinal">Final</label>
+                                        <input type="time" class="form-control" id="tiempoFinal" placeholder="Tiempo Final" name="tiempoFinal"> 
                                     </div>
                                 </div>
                             </form>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary">Agregar</button>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary">Agregar</button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -160,54 +161,22 @@
                             <form>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Inicio</label>
-                                        <input type="time" class="form-control" id="inputEmail4" placeholder="Tiempo inicial">
+                                        <label for="tiempoInicial">Inicio</label>
+                                        <input type="time" class="form-control" id="tiempoInicial" name="tiempoInicial">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Final</label>
-                                        <input type="time" class="form-control" id="inputPassword4" placeholder="Tiempo Final">
+                                        <label for="tiempoFinal">Final</label>
+                                        <input type="time" class="form-control" id="tiempoFinal" name="tiempoFinal">
                                     </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-primary">Editar</button>
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary">Editar</button>
-                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Modal editar 2 tiempo -->
-            <div class="modal fade" id="editar-2" tabindex="-1" role="dialog" aria-labelledby="editar-2" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                             <div class="modal-header  bg-dark">
-                                <h5 class="modal-title text-white" id="exampleModalCenterTitle">Agregar</h5>
-                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Inicio</label>
-                                            <input type="time" class="form-control" id="inputEmail4" placeholder="Tiempo inicial">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputPassword4">Final</label>
-                                            <input type="time" class="form-control" id="inputPassword4" placeholder="Tiempo Final">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Editar</button>
-                            </div>
-                        </div>
-                    </div>
             </div>
         </div>
     </body>
