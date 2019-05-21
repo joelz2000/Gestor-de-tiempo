@@ -36,21 +36,30 @@ class TiempoController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
+       
+       
         $validateData = $request->validate([
             'tiempoInicio'=> 'required'
         ]);
 
         $tiempo = new Tiempo();
 
-        $tiempo->comienzo = $request->input('tiempoInicio');
-        $tiempo->final = $request->input('tiempoFinal');
-        $tiempo->estado = 1;
-        
-        $tiempo->save();
+        if($request->input('tiempoInicio') < $request->input('tiempoFinal') ){
+            
+            $tiempo->comienzo = $request->input('tiempoInicio');
+            $tiempo->final = $request->input('tiempoFinal');
+            $tiempo->estado = 1;
+           
+            $tiempo->save();
 
-        return redirect('/');
+            return redirect('/');
+        }else{
+           
+            return redirect('/');
+        }
+        
+        
+        
     }
 
     /**

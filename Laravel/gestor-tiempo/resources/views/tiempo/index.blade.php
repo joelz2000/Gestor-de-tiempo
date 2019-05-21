@@ -26,11 +26,7 @@
                 @endforeach
             </ul>
         </div>
-
-    @else
-    <div class="alert alert-success" role="alert">
-        Se agrego Correctamente!
-    </div>
+   
     @endif
 
     <!--
