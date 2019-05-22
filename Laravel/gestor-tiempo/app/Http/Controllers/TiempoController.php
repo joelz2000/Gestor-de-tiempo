@@ -18,12 +18,13 @@ class TiempoController extends Controller
 
 
         //suma de los segundos 
-
+        /*$cantidadHorasLapsos =0;
+        $cantidadMinutosLapsos = array();*/
         $sumaMinutosTotales = 0;
         $cantidadMinutos = 0;
         $cantidadHoras = 0;
         $contadorHoras= 0;
-        
+        $cantidadMinutosLapsos = [];
         //sacar las horas y minutos por cada lapso
         foreach ($tiempos as $key => $value) {//SACAR INFORMACION DE tiempos de la BD
 
@@ -44,35 +45,37 @@ class TiempoController extends Controller
             $minutosInicialaux =$minutosInicial;
             $minutosFinalaux = $minutosFinal;
             
-            if($minutosInicial > $minutosFinal){
+            if($minutosInicial >= $minutosFinal){
 
                 while ($minutosFinalaux < $minutosInicialaux) {
                     $cantidadMinutos++;
                     $minutosInicialaux--;
                 }
                 $cantidadMinutos = 60 - $cantidadMinutos ;
+                $cantidadMinutosLapsos = array($key=>(string)$cantidadMinutos);
 
-            }elseif($minutosInicial < $minutosFinal){
+            }elseif($minutosInicial <= $minutosFinal){
 
                 while ($minutosInicialaux < $minutosFinalaux) {
                     $cantidadMinutos++;
                     $minutosInicialaux++;
                 }
-
+              
                 $cantidadHoras = $horaFinal - $horaComienzo;
-               
+                $cantidadMinutosLapsos = array($key=>(string)$cantidadMinutos);
             }
 
-          
-            var_dump((string)$cantidadHoras.':'.(string)$cantidadMinutos);
-            //suma de todos los minutos de los lapsos de tiempo
-            //$sumaMinutosTotales = $sumaMinutosTotales + $sumaMinutos;
+            
+            
+            
+           
+          // var_dump((string)$cantidadHoras.':'.(string)$cantidadMinutos);
             
             $cantidadMinutos = 0;
             
         }
-       
-
+        var_dump($cantidadMinutosLapsos[0]);
+    
        /*
         
         if($sumaMinutosTotales <= 60){
