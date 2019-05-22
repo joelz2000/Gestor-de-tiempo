@@ -14,27 +14,72 @@ class TiempoController extends Controller
      */
     public function index()
     {
-        $tiempos = Tiempo::all();
+        $tiempos = Tiempo::all();//todos los datos de la tabla tiempo
 
 
         //suma de los segundos 
 
         $sumaMinutosTotales = 0;
+        $cantidadMinutos = 0;
+        $cantidadHoras = 0;
+        $contadorHoras= 0;
+        
+        //sacar las horas y minutos por cada lapso
         foreach ($tiempos as $key => $value) {
 
+            //datos de tiempo comienzo y final
             $comienzo = $value->comienzo;
             $final = $value->final;
 
+
+            // minutos de la hora de comienzo y final
             $minutosInicial = $comienzo[3] . $comienzo[4];
-            $minutosfinal = $final[4] . $final[4];
+            $minutosFinal = $final[3] . $final[4];
 
 
-            $sumaMinutos = $minutosInicial + $minutosfinal;
+            //horas de las horas comienzo y final
+            $horaComienzo = $comienzo[0] . $comienzo[1];
+            $horaFinal = $final[0] . $final[1];
+
+            //suma de las horas por lapso de tiempo
+            $cantidadHoras = $horaFinal - $horaComienzo;
+
+            //suma de los minutos por lapso de tiempo
+            $sumaMinutos = $minutosInicial + $minutosFinal;
+
+            if($sumaMinutos <= 60){
+                $cantidadMinutos = $minutosFinal - $minutosInicial;
+            }else{
+                $cantidadMinutos = $sumaMinutos -60;
+            }
+            var_dump((string)$cantidadMinutos);
+            //suma de todos los minutos de los lapsos de tiempo
+            //$sumaMinutosTotales = $sumaMinutosTotales + $sumaMinutos;
             
-            $sumaMinutosTotales = $sumaMinutosTotales + $sumaMinutos;
+            
         }
+       
 
-        var_dump($sumaMinutosTotales);
+       /*
+        
+        if($sumaMinutosTotales <= 60){
+            $cantidadMinutos = (int)$minutosFinal - (int)$minutosInicial;
+        }else{
+            while($sumaMinutosTotales >= 59){
+            
+                $contadorHoras++;
+                $sumaMinutosTotales = $sumaMinutosTotales - 60;
+    
+            }
+            
+            
+            $cantidadMinutos = $sumaMinutosTotales;
+           
+        }
+        
+       */
+
+     
        /* $ultimoRegistro = $tiempos->last();
 
         $horaInicial = $ultimoRegistro->comienzo;
