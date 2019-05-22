@@ -16,7 +16,26 @@ class TiempoController extends Controller
     {
         $tiempos = Tiempo::all();
 
-        $ultimoRegistro = $tiempos->last();
+
+        //suma de los segundos 
+
+        $sumaMinutosTotales = 0;
+        foreach ($tiempos as $key => $value) {
+
+            $comienzo = $value->comienzo;
+            $final = $value->final;
+
+            $minutosInicial = $comienzo[3] . $comienzo[4];
+            $minutosfinal = $final[4] . $final[4];
+
+
+            $sumaMinutos = $minutosInicial + $minutosfinal;
+            
+            $sumaMinutosTotales = $sumaMinutosTotales + $sumaMinutos;
+        }
+
+        var_dump($sumaMinutosTotales);
+       /* $ultimoRegistro = $tiempos->last();
 
         $horaInicial = $ultimoRegistro->comienzo;
         $horaFinal = $ultimoRegistro->final;
@@ -72,7 +91,7 @@ class TiempoController extends Controller
             var_dump($cantidadMinutos);
         }
        
-
+        */
 
         
         /*if($horaFinal !=null){
