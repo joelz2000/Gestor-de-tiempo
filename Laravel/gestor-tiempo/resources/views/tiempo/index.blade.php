@@ -9,7 +9,7 @@
         Tiempo
     -->
     <div id="tiempo" class="text-center">
-        <h1>14:15:21 - 15:00:00 <hr></h1>
+    <h1>{{$sumaHorasTotales}}:{{$sumaMinutosTotales}} - 15:00 <hr></h1>
     </div>
 
   
