@@ -23,59 +23,103 @@ class TiempoController extends Controller
       
         //sacar las horas y minutos por cada lapso
         foreach ($tiempos as $key => $value) {//SACAR INFORMACION DE tiempos de la BD
-            $cantidadMinutos = 0;
-            $cantidadHoras = 0;
+            
             //datos de tiempo comienzo y final
             $comienzo = $value->comienzo;
             $final = $value->final;
-
-
-            // minutos de la hora de comienzo y final
-            $minutosInicial = $comienzo[3] . $comienzo[4];
-            $minutosFinal = $final[3] . $final[4];
-
-
-            //horas de las horas comienzo y final
-            $horaComienzo = $comienzo[0] . $comienzo[1];
-            $horaFinal = $final[0] . $final[1];
-
-            $minutosInicialaux =$minutosInicial;
-            $minutosFinalaux = $minutosFinal;
             
-            if($minutosInicial > $minutosFinal){
+            if($final != null){
+                $cantidadMinutos = 0;
+                $cantidadHoras = 0;
+                // minutos de la hora de comienzo y final
+                $minutosInicial = $comienzo[3] . $comienzo[4];
+                $minutosFinal = $final[3] . $final[4];
 
-                while ($minutosFinalaux < $minutosInicialaux) {
-                    $cantidadMinutos++;
-                    $minutosInicialaux--;
-                }
-                $cantidadMinutos = 60 - $cantidadMinutos ;
+
+                //horas de las horas comienzo y final
+                $horaComienzo = $comienzo[0] . $comienzo[1];
+                $horaFinal = $final[0] . $final[1];
+
+                $minutosInicialaux =$minutosInicial;
+                $minutosFinalaux = $minutosFinal;
                 
+                //calculo de tiempo por lapsos
+                if($minutosInicial > $minutosFinal){
 
-            }elseif($minutosInicial <= $minutosFinal){
+                    while ($minutosFinalaux < $minutosInicialaux) {
+                        $cantidadMinutos++;
+                        $minutosInicialaux--;
+                    }
+                    $cantidadHoras = $horaFinal - $horaComienzo;
+                  
 
-                while ($minutosInicialaux < $minutosFinalaux) {
-                    $cantidadMinutos++;
-                    $minutosInicialaux++;
+                }elseif($minutosInicial <= $minutosFinal){
+
+                    while ($minutosInicialaux < $minutosFinalaux) {
+                        $cantidadMinutos++;
+                        $minutosInicialaux++;
+                    }
+                    $cantidadHoras = $horaFinal - $horaComienzo;
+                    
+            
                 }
-                $cantidadHoras = $horaFinal - $horaComienzo;
-               
-        
-            }
-       
-            if($cantidadMinutos >=60){
-                $sumaMinutosTotales = $sumaMinutosTotales + $cantidadMinutos;
-                $sumaMinutosTotales = $sumaMinutosTotales  - 60;
-                $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
-                $sumaHorasTotales++;              
+              
+                // calculo de horas totales de todos los lapsos
+                if($cantidadMinutos >=60){
+                    $sumaMinutosTotales = $sumaMinutosTotales + $cantidadMinutos;
+                    $sumaMinutosTotales = $sumaMinutosTotales  - 60;
+                    $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
+                    $sumaHorasTotales++;              
+                }else{
+                    $sumaMinutosTotales = $sumaMinutosTotales + $cantidadMinutos; 
+                    $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
+                }
+                var_dump((string)$sumaHorasTotales.':'.(string)$sumaMinutosTotales);
             }else{
-                $sumaMinutosTotales = $sumaMinutosTotales + $cantidadMinutos; 
-                $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
+
+                $horaComienzo = $comienzo[0] . $comienzo[1];
+                $minutosInicial = $comienzo[3] . $comienzo[4];
+
+                $horaFinal= date('H');
+                $minutosFinal = date('i');
+
+                
+                $minutosInicialaux =$minutosInicial;
+                $minutosFinalaux = $minutosFinal;
+                
+                //calculo de tiempo por lapsos
+                if($minutosInicial > $minutosFinal){
+
+                    while ($minutosFinalaux < $minutosInicialaux) {
+                        $cantidadMinutos++;
+                        $minutosInicialaux--;
+                    }
+                    $cantidadMinutos = 60 - $cantidadMinutos ;
+                    
+
+                }elseif($minutosInicial <= $minutosFinal){
+
+                    while ($minutosInicialaux < $minutosFinalaux) {
+                        $cantidadMinutos++;
+                        $minutosInicialaux++;
+                    }
+                    $cantidadHoras = $horaFinal - $horaComienzo;
+                    
+                 
+                }
+               
+                var_dump($cantidadMinutos);
+               
+               // var_dump((string)$sumaHorasTotales.':'.(string)$cantidadMinutos);
+               
             }
+            
+         
             
         }
         
-        var_dump((string)$sumaHorasTotales.':'.(string)$sumaMinutosTotales);
-       
+      
+    
         
         return view('tiempo.index', compact('tiempos','sumaHorasTotales','sumaMinutosTotales'));
     }
