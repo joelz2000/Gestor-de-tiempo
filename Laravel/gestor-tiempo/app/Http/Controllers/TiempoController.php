@@ -15,6 +15,71 @@ class TiempoController extends Controller
     public function index()
     {
         $tiempos = Tiempo::all();
+
+        $ultimoRegistro = $tiempos->last();
+
+        $horaInicial = $ultimoRegistro->comienzo;
+        $horaFinal = $ultimoRegistro->final;
+
+        $horasInicial= $horaInicial[0] . $horaInicial[1];
+        $minutosInicial = $horaInicial[3] .$horaInicial[4];
+       
+        
+
+        $cantidadHoras = 0;
+        $cantidadMinutos = 0;
+      
+        if($horaFinal != null){
+
+            $horasFinal= $horaFinal[0] . $horaFinal[1];
+            $minutosFinal = $horaFinal[3] .$horaFinal[4];
+            
+
+            $cantidadHoras = (int)$horasFinal - (int)$horasInicial;
+
+            $sumaDeMinutos = (int)$minutosInicial + (int)$minutosFinal;//opcional para hacer calculo de minutos sobrepasando los 60min
+
+            $cantidadMinutos = (int)$minutosFinal - (int)$minutosInicial;
+            
+            
+            if($sumaDeMinutos >= 60 && $cantidadHoras!=0){
+                
+                $cantidadHoras = $cantidadHoras + 1;
+               
+            }
+        
+        }else{
+
+           
+
+            
+            $horasFinal= date('H');
+            $minutosFinal = date('i');
+           
+            $cantidadHoras = (int)$horasFinal - (int)$horasInicial;
+
+            $sumaDeMinutos = (int)$minutosInicial + (int)$minutosFinal;//opcional para hacer calculo de minutos sobrepasando los 60min
+
+            $cantidadMinutos = (int)$sumaDeMinutos - 60;
+            
+            
+            if($sumaDeMinutos >= 60 && $cantidadHoras!=0){
+                
+                $cantidadHoras = $cantidadHoras + 1;
+               
+            }
+
+            var_dump($cantidadMinutos);
+        }
+       
+
+
+        
+        /*if($horaFinal !=null){
+            (double)$tiempoTotal= $horaFinal - $horaInicial;
+            var_dump(strval($tiempoTotal));
+        }*/
+
         return view('tiempo.index', compact('tiempos'));
     }
 
@@ -46,6 +111,7 @@ class TiempoController extends Controller
 
         if($request->input('tiempoInicio') < $request->input('tiempoFinal') ){
             
+
             $tiempo->comienzo = $request->input('tiempoInicio');
             $tiempo->final = $request->input('tiempoFinal');
             $tiempo->estado = 1;
@@ -53,8 +119,17 @@ class TiempoController extends Controller
             $tiempo->save();
 
             return redirect('/');
-        }else{
+
+        }elseif($request->input('tiempoFinal') == null){
            
+            $tiempo->comienzo = $request->input('tiempoInicio');
+            $tiempo->final = $request->input('tiempoFinal');
+            $tiempo->estado = 1;
+           
+            $tiempo->save();
+            return redirect('/');
+          
+        }else{
             return redirect('/');
         }
         
