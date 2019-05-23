@@ -46,13 +46,15 @@ class TiempoController extends Controller
                 //calculo de tiempo por lapsos
                 if($minutosInicial > $minutosFinal){
 
-                    while ($minutosFinalaux < $minutosInicialaux) {
-                        $cantidadMinutos++;
-                        $minutosInicialaux--;
+                    if($minutosFinalaux=0){
+                        $minutosFinalaux=60;
                     }
-                    $cantidadHoras = $horaFinal - $horaComienzo;
-                  
-
+                    for ($i=$minutosFinalaux; $i < $minutosInicialaux; $i++) { 
+                        $cantidadMinutos++;
+                        
+                    }
+                    $cantidadHoras++;
+                   
                 }elseif($minutosInicial <= $minutosFinal){
 
                     while ($minutosInicialaux < $minutosFinalaux) {
@@ -63,18 +65,19 @@ class TiempoController extends Controller
                     
             
                 }
-              
+                var_dump($cantidadHoras.':'.$cantidadMinutos);
+                $sumaMinutosTotales = $sumaMinutosTotales + $cantidadMinutos;
                 // calculo de horas totales de todos los lapsos
-                if($cantidadMinutos >=60){
-                    $sumaMinutosTotales = $sumaMinutosTotales + $cantidadMinutos;
+                if($sumaMinutosTotales >=60){
+                  
                     $sumaMinutosTotales = $sumaMinutosTotales  - 60;
                     $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
                     $sumaHorasTotales++;              
                 }else{
-                    $sumaMinutosTotales = $sumaMinutosTotales + $cantidadMinutos; 
+                    
                     $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
                 }
-                var_dump((string)$sumaHorasTotales.':'.(string)$sumaMinutosTotales);
+              //var_dump((string)$sumaHorasTotales.':'.(string)$sumaMinutosTotales);
             }else{
 
                 $horaComienzo = $comienzo[0] . $comienzo[1];
@@ -107,8 +110,8 @@ class TiempoController extends Controller
                     
                  
                 }
-               
-                var_dump($cantidadMinutos);
+            
+              
                
                // var_dump((string)$sumaHorasTotales.':'.(string)$cantidadMinutos);
                
@@ -150,18 +153,7 @@ class TiempoController extends Controller
 
         $tiempo = new Tiempo();
 
-        if($request->input('tiempoInicio') < $request->input('tiempoFinal') ){
-            
-
-            $tiempo->comienzo = $request->input('tiempoInicio');
-            $tiempo->final = $request->input('tiempoFinal');
-            $tiempo->estado = 1;
-           
-            $tiempo->save();
-
-            return redirect('/');
-
-        }elseif($request->input('tiempoFinal') == null){
+        if($request->input('tiempoFinal') == null){
            
             $tiempo->comienzo = $request->input('tiempoInicio');
             $tiempo->final = $request->input('tiempoFinal');
@@ -171,6 +163,11 @@ class TiempoController extends Controller
             return redirect('/');
           
         }else{
+            $tiempo->comienzo = $request->input('tiempoInicio');
+            $tiempo->final = $request->input('tiempoFinal');
+            $tiempo->estado = 1;
+           
+            $tiempo->save();
             return redirect('/');
         }
         
