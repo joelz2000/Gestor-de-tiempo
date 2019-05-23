@@ -40,31 +40,53 @@ class TiempoController extends Controller
                 $horaComienzo = $comienzo[0] . $comienzo[1];
                 $horaFinal = $final[0] . $final[1];
 
+                /*if($minutosFinal<1){
+                    $minutosFinal=60;
+                }*/
                 $minutosInicialaux =$minutosInicial;
                 $minutosFinalaux = $minutosFinal;
                 
-                //calculo de tiempo por lapsos
-                if($minutosInicial > $minutosFinal){
+             
+              
 
-                    if($minutosFinalaux=0){
-                        $minutosFinalaux=60;
+                if($minutosFinal == 0){
+                   
+                    
+                    for ($i=$minutosFinalaux; $i < $minutosInicialaux; $i++) { 
+                        $cantidadMinutos++;
+                     
                     }
+                     $cantidadMinutos = 60 - $cantidadMinutos;
+                   
+                }
+                //calculo de tiempo por lapsos
+                if($minutosInicial > $minutosFinal && $minutosFinal!=0){
+
+                  
                     for ($i=$minutosFinalaux; $i < $minutosInicialaux; $i++) { 
                         $cantidadMinutos++;
                         
                     }
+                 
                     $cantidadHoras++;
                    
-                }elseif($minutosInicial <= $minutosFinal){
-
-                    while ($minutosInicialaux < $minutosFinalaux) {
-                        $cantidadMinutos++;
-                        $minutosInicialaux++;
-                    }
-                    $cantidadHoras = $horaFinal - $horaComienzo;
-                    
-            
                 }
+                
+                if($minutosInicial <= $minutosFinal  && $minutosFinal!=0){
+                 
+                    for ($i=$minutosInicialaux; $i < $minutosFinalaux; $i++) { 
+                        $cantidadMinutos++;
+                        
+                    }
+                    
+                   
+               
+                   
+                    $cantidadHoras = $horaFinal - $horaComienzo;
+                   
+            
+                } 
+               
                 var_dump($cantidadHoras.':'.$cantidadMinutos);
                 $sumaMinutosTotales = $sumaMinutosTotales + $cantidadMinutos;
                 // calculo de horas totales de todos los lapsos
