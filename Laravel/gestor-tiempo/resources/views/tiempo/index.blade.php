@@ -89,7 +89,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="tiempoInicio">Inicio</label>
-                                <input type="time" class="form-control" id="tiempoInicio" name="tiempoInicio" value="{{date('H:i:s')}}">
+                                <input type="time" class="form-control" id="tiempoInicio" name="tiempoInicio">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="tiempoFinal">Final</label>
