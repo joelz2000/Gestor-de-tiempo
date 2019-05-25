@@ -116,12 +116,14 @@ class TiempoController extends Controller
                             $cantidadHoras++;
                             
                         }
-                        $cantidadHoras = $cantidadHoras + $lapsoMinuto24 - 1;
+                        $cantidadHoras = $cantidadHoras + $lapsoMinuto24;
                     }else{
                         $cantidadHoras = $horaFinal - $horaComienzo;
                     }   
                    
                 } 
+
+                
                 $sumaMinutosTotales = $sumaMinutosTotales + $cantidadMinutos;
                
                 // calculo de horas totales de todos los lapsos
@@ -147,33 +149,65 @@ class TiempoController extends Controller
                 $horaFinal= date('H');
                 $minutosFinal = date('i');
 
-                
+                 //minutos auxiliares
+
                 $minutosInicialaux =$minutosInicial;
                 $minutosFinalaux = $minutosFinal;
                 
-               
-                //calculo de tiempo por lapsos
+                //horas auxiliares
+
+                $horaInicialAux = $horaComienzo;
+                $horaFinalAux = $horaFinal;
+
                 if($minutosFinal == 0){
                    
                     
                     for ($i=$minutosFinalaux; $i < $minutosInicialaux; $i++) { 
                         $cantidadMinutos++;
-                     
+                       
                     }
-                     $cantidadMinutos = 60 - $cantidadMinutos;
+
+                    if($minutosInicial != 0){
+                        $cantidadMinutos = 60 - $cantidadMinutos;
+                    }
+                    
+                    if($horaComienzo > $horaFinal){
+                        $lapsoMinuto24 = 24 - $horaComienzo;
+                        
+                        for ($i=0; $i < $horaFinalAux; $i++) { 
+                            $cantidadHoras++;
+                            
+                        }
+                        $cantidadHoras = $cantidadHoras + $lapsoMinuto24;
+                    }else{
+                        $cantidadHoras = $horaFinal - $horaComienzo;
+                    }   
                    
+                  
                 }
+                
+
                 //calculo de tiempo por lapsos
                 if($minutosInicial > $minutosFinal && $minutosFinal!=0){
 
                   
                     for ($i=$minutosFinalaux; $i < $minutosInicialaux; $i++) { 
                         $cantidadMinutos++;
+                    }
+                   
+                    
+                    if($horaComienzo > $horaFinal){
+                        $lapsoMinuto24 = 24 - $horaComienzo;
                         
+                        for ($i=0; $i < $horaFinalAux; $i++) { 
+                            $cantidadHoras++;
+                            
+                        }
+                        $cantidadMinutos = 60- $cantidadMinutos;
+                    }else{
+                        $cantidadHoras++;
                     }
                  
-                    $cantidadHoras++;
-                   
                 }
                 
                 if($minutosInicial <= $minutosFinal  && $minutosFinal!=0){
@@ -182,9 +216,21 @@ class TiempoController extends Controller
                         $cantidadMinutos++;
                         
                     }
-                    $cantidadHoras = $horaFinal - $horaComienzo;
+                    if($horaComienzo > $horaFinal){
+                        $lapsoMinuto24 = 24 - $horaComienzo;
+                        
+                        for ($i=0; $i < $horaFinalAux; $i++) { 
+                            $cantidadHoras++;
+                            
+                        }
+                        $cantidadHoras = $cantidadHoras + $lapsoMinuto24;
+                    }else{
+                        $cantidadHoras = $horaFinal - $horaComienzo;
+                    }   
+                   
                 } 
                 $sumaMinutosTotales = $sumaMinutosTotales + $cantidadMinutos;
+               
                 // calculo de horas totales de todos los lapsos
                 if($sumaMinutosTotales >=60){
                   
@@ -192,11 +238,9 @@ class TiempoController extends Controller
                     $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
                     $sumaHorasTotales++;              
                 }
-            
                 if($sumaHorasTotales <= 60 && $cantidadHoras >0){
                     $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
                 }
-              
                
                
             }
