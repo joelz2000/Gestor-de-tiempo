@@ -78,13 +78,7 @@ class TiempoController extends Controller
                         $cantidadMinutos++;
                         
                     }
-                    
-                   
-               
-                   
                     $cantidadHoras = $horaFinal - $horaComienzo;
-                   
-            
                 } 
                 $sumaMinutosTotales = $sumaMinutosTotales + $cantidadMinutos;
                 // calculo de horas totales de todos los lapsos
@@ -93,14 +87,15 @@ class TiempoController extends Controller
                     $sumaMinutosTotales = $sumaMinutosTotales  - 60;
                     $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
                     $sumaHorasTotales++;              
-                }else{
-                    
-                    $sumaHorasTotales++;
+                }
+                if($sumaHorasTotales <= 60 && $cantidadHoras >0){
+                    $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
                 }
               
-                var_dump('tiempo lapso: '.$cantidadHoras.':'.$cantidadMinutos);
+              
+                //var_dump('tiempo lapso: '.$cantidadHoras.':'.$cantidadMinutos);
                
-              var_dump((string)$sumaHorasTotales.':'.(string)$sumaMinutosTotales);
+              //var_dump((string)$sumaHorasTotales.':'.(string)$sumaMinutosTotales);
             }else{
 
                 $horaComienzo = $comienzo[0] . $comienzo[1];
@@ -113,34 +108,57 @@ class TiempoController extends Controller
                 $minutosInicialaux =$minutosInicial;
                 $minutosFinalaux = $minutosFinal;
                 
+               
                 //calculo de tiempo por lapsos
-                if($minutosInicial > $minutosFinal){
-
-                    while ($minutosFinalaux < $minutosInicialaux) {
-                        $cantidadMinutos++;
-                        $minutosInicialaux--;
-                    }
-                    $cantidadMinutos = 60 - $cantidadMinutos ;
+                if($minutosFinal == 0){
+                   
                     
-
-                }elseif($minutosInicial <= $minutosFinal){
-
-                    while ($minutosInicialaux < $minutosFinalaux) {
+                    for ($i=$minutosFinalaux; $i < $minutosInicialaux; $i++) { 
                         $cantidadMinutos++;
-                        $minutosInicialaux++;
+                     
+                    }
+                     $cantidadMinutos = 60 - $cantidadMinutos;
+                   
+                }
+                //calculo de tiempo por lapsos
+                if($minutosInicial > $minutosFinal && $minutosFinal!=0){
+
+                  
+                    for ($i=$minutosFinalaux; $i < $minutosInicialaux; $i++) { 
+                        $cantidadMinutos++;
+                        
+                    }
+                 
+                    $cantidadHoras++;
+                   
+                }
+                
+                if($minutosInicial <= $minutosFinal  && $minutosFinal!=0){
+                 
+                    for ($i=$minutosInicialaux; $i < $minutosFinalaux; $i++) { 
+                        $cantidadMinutos++;
+                        
                     }
                     $cantidadHoras = $horaFinal - $horaComienzo;
-                    
-                 
+                } 
+                $sumaMinutosTotales = $sumaMinutosTotales + $cantidadMinutos;
+                // calculo de horas totales de todos los lapsos
+                if($sumaMinutosTotales >=60){
+                  
+                    $sumaMinutosTotales = $sumaMinutosTotales  - 60;
+                    $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
+                    $sumaHorasTotales++;              
                 }
             
+                if($sumaHorasTotales <= 60 && $cantidadHoras >0){
+                    $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
+                }
               
                
-               // var_dump((string)$sumaHorasTotales.':'.(string)$cantidadMinutos);
                
             }
             
-         
+        
             
         }
         
