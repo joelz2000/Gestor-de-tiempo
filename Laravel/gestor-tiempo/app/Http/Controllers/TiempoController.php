@@ -73,7 +73,13 @@ class TiempoController extends Controller
                         }
                         $cantidadHoras = $cantidadHoras + $lapsoMinuto24;
                     }else{
-                        $cantidadHoras = $horaFinal - $horaComienzo;
+
+                        if($minutosInicial > $minutosFinal){
+                            $cantidadHoras++;
+                        }else{
+                            $cantidadHoras = $horaFinal - $horaComienzo;
+                        }
+                      
                     }   
                    
                   
@@ -98,7 +104,14 @@ class TiempoController extends Controller
                         }
                         $cantidadMinutos = 60- $cantidadMinutos;
                     }else{
-                        $cantidadHoras++;
+                        $cantidadMinutos = 60- $cantidadMinutos;
+                        $cantidadHoras= $horaFinal - $horaComienzo;
+
+                        if($cantidadHoras == 1){
+                            $cantidadHoras = 0;
+                        }else{
+                            $cantidadHoras = $cantidadHoras-1;
+                        }
                     }
                  
                 }
@@ -130,17 +143,16 @@ class TiempoController extends Controller
                 if($sumaMinutosTotales >=60){
                   
                     $sumaMinutosTotales = $sumaMinutosTotales  - 60;
-                    $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
+                    $sumaHorasTotales =  $cantidadHoras + 1;
                     $sumaHorasTotales++;              
                 }
                 if($sumaHorasTotales <= 60 && $cantidadHoras >0){
-                    $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
+                    $sumaHorasTotales = $sumaHorasTotales + 1;
                 }
               
-              
-                //var_dump('tiempo lapso: '.$cantidadHoras.':'.$cantidadMinutos);
+             
                
-              //var_dump((string)$sumaHorasTotales.':'.(string)$sumaMinutosTotales);
+            
             }else{
 
                 $horaComienzo = $comienzo[0] . $comienzo[1];
@@ -205,7 +217,14 @@ class TiempoController extends Controller
                         }
                         $cantidadMinutos = 60- $cantidadMinutos;
                     }else{
-                        $cantidadHoras++;
+                        $cantidadMinutos = 60- $cantidadMinutos;
+                        $cantidadHoras= $horaFinal - $horaComienzo;
+
+                        if($cantidadHoras == 1){
+                            $cantidadHoras = 0;
+                        }else{
+                            $cantidadHoras = $cantidadHoras-1;
+                        }
                     }
                  
                 }
@@ -231,21 +250,22 @@ class TiempoController extends Controller
                 } 
                 $sumaMinutosTotales = $sumaMinutosTotales + $cantidadMinutos;
                
-                // calculo de horas totales de todos los lapsos
+                 // calculo de horas totales de todos los lapsos
                 if($sumaMinutosTotales >=60){
                   
                     $sumaMinutosTotales = $sumaMinutosTotales  - 60;
-                    $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
+                    $sumaHorasTotales =  $sumaHorasTotales + $sumaHorasTotales;
                     $sumaHorasTotales++;              
                 }
                 if($sumaHorasTotales <= 60 && $cantidadHoras >0){
-                    $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
+                    $sumaHorasTotales = $sumaHorasTotales + 1;
                 }
                
                
             }
-            
-        
+            var_dump('tiempo lapso: '.$cantidadHoras.':'.$cantidadMinutos);
+            var_dump((string)$sumaHorasTotales.':'.(string)$sumaMinutosTotales);
+             
             
         }
         
