@@ -394,7 +394,13 @@ class TiempoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+   
+        $tiempo = Tiempo::find($id);
+
+        $tiempo->comienzo = $request->input('tiempoInicio');
+        $tiempo->final = $request->input('tiempoFinal');
+        $tiempo->save();
+        return redirect('/');
     }
 
     /**

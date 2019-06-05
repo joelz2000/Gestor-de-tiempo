@@ -16,3 +16,6 @@
 Route::get('/', 'TiempoController@index');
 
 Route::post('/', 'TiempoController@store');
+
+Route::put('/{id}', 'TiempoController@update');
+

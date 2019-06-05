@@ -121,15 +121,21 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                    <form method="POST" action="/{{$tiempo->id}}"> 
+                            @method('PUT')
+                            @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="tiempoInicio">Inicio</label>
-                                    <input type="time" class="form-control" id="inputEmail4" name="tiempoInicio" value="{{$tiempo->comienzo}}">
+                                    <input type="time" class="form-control" id="tiempoInicio" name="tiempoInicio" value="{{$tiempo->comienzo}}">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="tiempoFinal">Final</label>
                                     <input type="time" class="form-control" id="tiempoFinal" name="tiempoFinal" value="{{$tiempo->final}}"> 
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="tiempoInicio">Fecha:</label>
+                                    <input type="text" class="form-control" id="id_tiempo" name="fecha" value="{{$tiempo->created_at}}" disabled>
                                 </div>
                             </div>
                             <div class="modal-footer">
