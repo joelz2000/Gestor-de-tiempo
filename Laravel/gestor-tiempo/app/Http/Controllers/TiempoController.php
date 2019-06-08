@@ -23,7 +23,7 @@ class TiempoController extends Controller
 
         //sacar las horas y minutos por cada lapso
         foreach ($tiempos as $key => $value) {//SACAR INFORMACION DE tiempos de la BD
-            if($value->estado == 1){
+            if($value->estado != 0){
                 //datos de tiempo comienzo y final
                 $comienzo = $value->comienzo;
                 $final = $value->final;
@@ -134,9 +134,9 @@ class TiempoController extends Controller
                             $cantidadHoras = $cantidadHoras + $lapsoMinuto24;
                         }else{
                             $cantidadHoras = $horaFinal - $horaComienzo;
-                            if($cantidadHoras == 1){
+                            /*if($cantidadHoras == 1){
                                 $cantidadHoras = 0;
-                            }
+                            }*/     
                         }   
                     
                     } 
@@ -303,10 +303,11 @@ class TiempoController extends Controller
                 
                 
                 }
+                var_dump('tiempo lapso: '.$cantidadHoras.':'.$cantidadMinutos);
+                //var_dump((string)$sumaHorasTotales.':'.(string)$sumaMinutosTotales);
             }
             
-             var_dump('tiempo lapso: '.$cantidadHoras.':'.$cantidadMinutos);
-            //var_dump((string)$sumaHorasTotales.':'.(string)$sumaMinutosTotales);
+         
              
             
         }
