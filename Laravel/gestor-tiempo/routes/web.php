@@ -17,5 +17,7 @@ Route::get('/', 'TiempoController@index');
 
 Route::post('/', 'TiempoController@store');
 
-Route::put('/{id}', 'TiempoController@update');
+Route::put('/edit/{id}', 'TiempoController@update');
+
+Route::delete('/delete/{id}', 'TiempoController@destroy');
 
