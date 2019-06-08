@@ -140,8 +140,17 @@ class TiempoController extends Controller
                         }   
                     
                     } 
-                    
-                    if($minutosInicial == 0 && $minutosFinal!=0){
+
+                    //si la hora de comienzo es igual a la hora final 
+
+                    if($minutosInicial == $minutosFinal){
+                        
+                        $cantidadHoras = $horaFinal - $horaComienzo;
+                       
+                    }
+
+                    //
+                    if($minutosInicial == 0 && $minutosFinal!=0 ){
                         for ($i=$minutosInicialaux; $i < $minutosFinalaux; $i++) { 
                             $cantidadMinutos++;
                 
@@ -283,12 +292,21 @@ class TiempoController extends Controller
                         }else{
                             
                             $cantidadHoras = $horaFinal - $horaComienzo;
-                            if($cantidadHoras == 1){
+                            /*if($cantidadHoras == 1){
                                 $cantidadHoras = 0;
-                            }
+                            }*/
                         }   
                     
                     } 
+
+                    //si la hora de comienzo es igual a la hora final 
+
+                    if($minutosInicial == $minutosFinal){
+                        
+                        $cantidadHoras = $horaFinal - $horaComienzo;
+                       
+                    }
+                    
                     $sumaMinutosTotales = $sumaMinutosTotales + $cantidadMinutos;
                 
                     // calculo de horas totales de todos los lapsos
