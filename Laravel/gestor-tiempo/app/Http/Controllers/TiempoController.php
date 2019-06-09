@@ -324,6 +324,8 @@ class TiempoController extends Controller
                 if($sumaHorasTotales <= 60 && $cantidadHoras >0){
                     $sumaHorasTotales = $sumaHorasTotales + $cantidadHoras;
                 }
+
+             
                //var_dump('tiempo lapso: '.$cantidadHoras.':'.$cantidadMinutos);
                 //var_dump((string)$sumaHorasTotales.':'.(string)$sumaMinutosTotales);
             }

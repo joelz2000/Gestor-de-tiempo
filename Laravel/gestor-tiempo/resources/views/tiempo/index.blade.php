@@ -9,7 +9,20 @@
         Tiempo
     -->
     <div id="tiempo" class="text-center">
-    <h1>{{$sumaHorasTotales}}:{{$sumaMinutosTotales}} - 15:00 <hr></h1>
+        <!--Datos del tiempo que lleva-->
+        @if($sumaMinutosTotales <10)
+            <h1> Lleva {{$sumaHorasTotales}}:0{{$sumaMinutosTotales}} <hr></h1>
+        @else
+            <h1> Lleva {{$sumaHorasTotales}}:{{$sumaMinutosTotales}} <hr></h1>
+        @endIf
+
+         <!--Datos del tiempo que falta
+        
+        @if($sumaMinutosTotales >10)
+            <h1> Falta {{15 - $sumaHorasTotales }}:0{{60-$sumaMinutosTotales}} <hr></h1>
+        @else
+            <h1> Falta {{15-$sumaHorasTotales}}:{{60-$sumaMinutosTotales}} <hr></h1>
+        @endIf-->
     </div>
 
   
