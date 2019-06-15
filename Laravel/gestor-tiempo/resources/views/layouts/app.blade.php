@@ -30,7 +30,7 @@
         <!--
             Menu abajo
         -->
-        <ul class="nav navbar-dark justify-content-around bg-dark fixed-bottom">
+       <!-- <ul class="nav navbar-dark justify-content-around bg-dark fixed-bottom">
             <li class="nav-item">
                 <a class="nav-link active text-white text-center" href="#">
                     <ion-icon name="time" size="large" class="text-white"></ion-icon>
@@ -50,7 +50,7 @@
                     <p>Historial</p>
                 </a>
             </li>
-        </ul>
+        </ul> -->
           
         <!--
             Cuerpo la parte blanca
