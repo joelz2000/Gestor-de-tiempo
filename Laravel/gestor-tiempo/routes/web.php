@@ -21,3 +21,4 @@ Route::put('/edit/{id}', 'TiempoController@update');
 
 Route::delete('/delete/{id}', 'TiempoController@destroy');
 
+Route::post('/reiniciar', 'TiempoController@reiniciar');

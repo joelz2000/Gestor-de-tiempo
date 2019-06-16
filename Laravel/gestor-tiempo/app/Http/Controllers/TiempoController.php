@@ -442,7 +442,22 @@ class TiempoController extends Controller
         
         $tiempo->estado =0;
         $tiempo->save();
-        return redirect('/');
+       
         
     }
+
+    public function reiniciar()
+    {
+        $tiempos = Tiempo::all();//todos los datos de la tabla tiempo
+
+        foreach ($tiempos as $key => $tiempo) {
+            if($tiempo->estado == 1){
+                $tiempo->estado = 0;
+                $tiempo->save();
+            }
+        }
+        
+        return redirect('/');
+    }
+
 }

@@ -47,7 +47,7 @@
     -->
     <div id="acciones" class="d-flex justify-content-between mt-4 mb-2">
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#agregar">Agregar</button>
-        <button type="button" class="btn btn-secondary btn-lg">Reiniciar</button>
+        <button type="button" class="btn btn-secondary btn-lg"  data-toggle="modal" data-target="#reiniciar">Reiniciar</button>
     </div>
 
     <!--
@@ -194,6 +194,34 @@
             </div>
         </div>
     @endforeach
+
+    <!-- Modals Reiniciar lista de tiempo -->
+
+    <div class="modal fade" id="reiniciar" tabindex="-1" role="dialog" aria-labelledby="reiniciar" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title text-white text-center" id="exampleModalCenterTitle">Reiniciar</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form method="POST" action="/reiniciar"> 
+                        @csrf
+                        <div>
+                            <p class="text-center font-weight-bold">¿Estas seguro de eliminar todos los campos?</p>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-danger btn-lg mr-3">Si</button>
+                            <button type="button" class="btn btn-secondary btn-lg ml-3" data-dismiss="modal">No</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 @endsection
