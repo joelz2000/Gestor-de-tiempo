@@ -57,6 +57,8 @@
         -->
         <div class="container mt-5 pt-5 mb-5 pb-5">
            @yield('content')
+           @include('sweetalert::alert')
+
         </div>
     </body>
 </html>

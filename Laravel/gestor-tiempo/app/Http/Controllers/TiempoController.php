@@ -4,6 +4,8 @@ namespace GestorTiempo\Http\Controllers;
 
 use GestorTiempo\Tiempo;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class TiempoController extends Controller
 {
@@ -333,13 +335,15 @@ class TiempoController extends Controller
             }
             
          
-             
+           
             
         }
         
       
     
-        
+        if(session('success_message')){
+            Alert::success('Success Title', session('success_message'));
+        }
         return view('tiempo.index', compact('tiempos','sumaHorasTotales','sumaMinutosTotales'));
     }
 
@@ -375,16 +379,18 @@ class TiempoController extends Controller
             $tiempo->final = $request->input('tiempoFinal');
             $tiempo->estado = 1;
            
+            //$tiempo = Tiempo::create($request->all()); 
             $tiempo->save();
-            return redirect('/');
-          
+            
+            return redirect('/')->withSuccessMessage('Time Created Successfully!');
+            
         }else{
             $tiempo->comienzo = $request->input('tiempoInicio');
             $tiempo->final = $request->input('tiempoFinal');
             $tiempo->estado = 1;
            
             $tiempo->save();
-            return redirect('/');
+            return redirect('/')->withSuccessMessage('Time Created Successfully!');
         }
         
         
