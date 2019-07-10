@@ -22,6 +22,8 @@ class TiempoController extends Controller
         $sumaHorasTotales=0;
         $cantidadMinutos = 0;
         $cantidadHoras = 0;
+        $horaFalta = 0;
+        $minutosFalta = 0;
 
         //sacar las horas y minutos por cada lapso
         foreach ($tiempos as $key => $value) {//SACAR INFORMACION DE tiempos de la BD
@@ -102,10 +104,9 @@ class TiempoController extends Controller
                         if($horaComienzo > $horaFinal){
                             $lapsoMinuto24 = 24 - $horaComienzo;
                             
-                            for ($i=0; $i < $horaFinalAux; $i++) { 
-                                $cantidadHoras++;
-                                
-                            }
+                            $cantidadHoras = $horaComienzo - $horaFinal;
+                            $cantidadHoras = 24 - $cantidadHoras -1;
+                            
                             $cantidadMinutos = 60- $cantidadMinutos;
                         }else{
                             $cantidadMinutos = 60- $cantidadMinutos;
@@ -147,8 +148,14 @@ class TiempoController extends Controller
 
                     if($minutosInicial == $minutosFinal){
                         
-                        $cantidadHoras = $horaFinal - $horaComienzo;
-                       
+                        if($horaComienzo > $horaFinal){
+                            $cantidadHoras = $horaComienzo - $horaFinal;
+                            $cantidadHoras = 24 - $cantidadHoras;
+                        }else{
+                            $cantidadHoras = $horaFinal - $horaComienzo;
+                        }
+                    
+                        var_dump("jola");
                     }
 
                     //
@@ -334,8 +341,14 @@ class TiempoController extends Controller
                 //var_dump((string)$sumaHorasTotales.':'.(string)$sumaMinutosTotales);
             }
             
-         
-           
+            //calculo de tiempo que falta en 15 horas
+            
+            $horaFalta = 15 - $sumaHorasTotales;
+            $minutosFalta = 60 - $sumaMinutosTotales;
+
+            if($minutosFalta == 60){
+                $minutosFalta = 0;
+            }
             
         }
         
@@ -348,7 +361,7 @@ class TiempoController extends Controller
         if(session('error')){
             Alert::error('Error',session('error') );
         }
-        return view('tiempo.index', compact('tiempos','sumaHorasTotales','sumaMinutosTotales'));
+        return view('tiempo.index', compact('tiempos','sumaHorasTotales','sumaMinutosTotales', 'horaFalta', 'minutosFalta'));
     }
 
     /**

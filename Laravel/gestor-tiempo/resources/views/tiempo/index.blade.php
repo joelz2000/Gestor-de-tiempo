@@ -16,13 +16,13 @@
             <h1> Lleva {{$sumaHorasTotales}}:{{$sumaMinutosTotales}} <hr></h1>
         @endIf
 
-         <!--Datos del tiempo que falta
+         <!--Datos del tiempo que falta -->
         
-        @if($sumaMinutosTotales >10)
-            <h1> Falta {{15 - $sumaHorasTotales }}:0{{60-$sumaMinutosTotales}} <hr></h1>
+        @if($minutosFalta <10)
+            <h1> Falta {{$horaFalta }}:0{{$minutosFalta}} <hr></h1>
         @else
-            <h1> Falta {{15-$sumaHorasTotales}}:{{60-$sumaMinutosTotales}} <hr></h1>
-        @endIf-->
+            <h1> Falta {{$horaFalta}}:{{$minutosFalta}} <hr></h1>
+        @endIf
     </div>
 
   
