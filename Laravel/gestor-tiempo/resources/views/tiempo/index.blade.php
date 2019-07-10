@@ -29,7 +29,7 @@
 
      <!--
         Validaciones
-    -->
+  
 
     @if($errors->any())
         <div class="alert alert-danger" role="alert">
@@ -41,7 +41,7 @@
         </div>
    
     @endif
-
+     -->
     <!--
         Acciones agregar y reiniciar
     -->

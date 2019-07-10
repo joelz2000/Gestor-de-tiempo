@@ -342,7 +342,11 @@ class TiempoController extends Controller
       
     
         if(session('success')){
-            Alert::success(session('success') );
+            Alert::success('Éxito',session('success') );
+        }
+
+        if(session('error')){
+            Alert::error('Error',session('error') );
         }
         return view('tiempo.index', compact('tiempos','sumaHorasTotales','sumaMinutosTotales'));
     }
@@ -365,11 +369,17 @@ class TiempoController extends Controller
      */
     public function store(Request $request)
     {
-       
-       
+       //Obtener todos los datos de tiempo
+        $tiempos = Tiempo::all();
+
+        //Obtener el ultimo tiempo registrado en la tabla tiempos
+        $ultimoTiempo = $tiempos->last();
+
+        /* 
         $validateData = $request->validate([
             'tiempoInicio'=> 'required'
         ]);
+        */
 
         $tiempo = new Tiempo();
 
@@ -379,8 +389,24 @@ class TiempoController extends Controller
             $tiempo->final = $request->input('tiempoFinal');
             $tiempo->estado = 1;
            
+        //Validaciones
+
+            //validacion si tiempo final del registro anterior debe tener un dato
+            if(($ultimoTiempo->final == null) && ($ultimoTiempo->estado == 1)){
+                return redirect('/')->withError('El tiempo final del registro anterior debe tener un tiempo');
+            }
+
+            //validacion si tiempo inciial es  null
+            if($tiempo->comienzo ==null){
+                return redirect('/')->withError('Tiempo Inicial debe tener hora');
+            }
+
+            
             //$tiempo = Tiempo::create($request->all()); 
+
+            //Guardar los datos 
             $tiempo->save();
+            
             
             return redirect('/')->withSuccess('Tiempo creado satisfactoriamente!');
             
@@ -389,6 +415,20 @@ class TiempoController extends Controller
             $tiempo->final = $request->input('tiempoFinal');
             $tiempo->estado = 1;
            
+            
+        //Validaciones
+
+            //validacion si tiempo final del registro anterior debe tener un dato
+            if(($ultimoTiempo->final == null) && ($ultimoTiempo->estado == 1)){
+                return redirect('/')->withError('El tiempo final del registro anterior debe tener un tiempo');
+            }
+
+            //validacion si tiempo inciial es  null
+            if($tiempo->comienzo ==null){
+                return redirect('/')->withError('Tiempo Inicial debe tener hora');
+            }
+
+        //Guardar los datos    
             $tiempo->save();
             return redirect('/')->withSuccess('Tiempo creado satisfactoriamente!');
         }
