@@ -341,8 +341,8 @@ class TiempoController extends Controller
         
       
     
-        if(session('success_message')){
-            Alert::success('Success Title', session('success_message'));
+        if(session('success')){
+            Alert::success(session('success') );
         }
         return view('tiempo.index', compact('tiempos','sumaHorasTotales','sumaMinutosTotales'));
     }
@@ -382,7 +382,7 @@ class TiempoController extends Controller
             //$tiempo = Tiempo::create($request->all()); 
             $tiempo->save();
             
-            return redirect('/')->withSuccessMessage('Time Created Successfully!');
+            return redirect('/')->withSuccess('Tiempo creado satisfactoriamente!');
             
         }else{
             $tiempo->comienzo = $request->input('tiempoInicio');
@@ -390,7 +390,7 @@ class TiempoController extends Controller
             $tiempo->estado = 1;
            
             $tiempo->save();
-            return redirect('/')->withSuccessMessage('Time Created Successfully!');
+            return redirect('/')->withSuccess('Tiempo creado satisfactoriamente!');
         }
         
         
@@ -434,7 +434,7 @@ class TiempoController extends Controller
         $tiempo->comienzo = $request->input('tiempoInicio');
         $tiempo->final = $request->input('tiempoFinal');
         $tiempo->save();
-        return redirect('/');
+        return redirect('/')->withSuccess('Tiempo Editado satisfactoriamente!');
     }
 
     /**
@@ -450,7 +450,7 @@ class TiempoController extends Controller
         
         $tiempo->estado =0;
         $tiempo->save();
-        return redirect('/');   
+        return redirect('/')->withSuccess('Tiempo Eliminado satisfactoriamente!');
         
     }
 
@@ -465,7 +465,7 @@ class TiempoController extends Controller
             }
         }
         
-        return redirect('/');
+        return redirect('/')->withSuccess('Tiempos Eliminados satisfactoriamente!');
     }
 
 }
