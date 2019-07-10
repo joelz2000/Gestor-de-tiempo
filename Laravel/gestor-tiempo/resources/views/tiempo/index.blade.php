@@ -137,7 +137,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                    <form method="POST" action="/edit/{{$tiempo->id}}"> 
+                    <form method="POST" action="/{{$tiempo->id}}"> 
                             @method('PUT')
                             @csrf
                             <div class="form-row">
@@ -178,7 +178,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                    <form method="POST" action="/delete/{{$tiempo->id}}"> 
+                    <form method="POST" action="/{{$tiempo->id}}"> 
                             @method('DELETE')
                             @csrf
                             <div>
