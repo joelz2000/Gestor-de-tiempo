@@ -1,5 +1,5 @@
 
-.body-signin{
+.content-signin{
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -19,6 +19,11 @@
   max-width: 330px;
   padding: 15px;
   margin: auto;
+  background-color: white;
+  border-radius: 8px;
+  -webkit-box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.89);
+-moz-box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.89);
+box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.89);
 }
 .form-signin .checkbox {
   font-weight: 400;

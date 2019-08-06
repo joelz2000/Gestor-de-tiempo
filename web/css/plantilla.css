@@ -6,3 +6,7 @@
 #registroHoras table tr td{
     min-width: 180px;
 }
+
+body{
+    height: 100%;
+}
