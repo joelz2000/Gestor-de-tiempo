@@ -21,9 +21,9 @@
   margin: auto;
   background-color: white;
   border-radius: 8px;
-  -webkit-box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.89);
--moz-box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.89);
-box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.89);
+  -webkit-box-shadow: 10px 10px 5px -1px rgba(0,0,0,0.54);
+  -moz-box-shadow: 10px 10px 5px -1px rgba(0,0,0,0.54);
+  box-shadow: 10px 10px 5px -1px rgba(0,0,0,0.54);
 }
 .form-signin .checkbox {
   font-weight: 400;
